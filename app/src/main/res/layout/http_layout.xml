@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ping.com.happy.HttpView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="加载失败"
+        android:background="#ffffff"
+        android:textSize="40sp"
+        android:id="@+id/fail"
+        android:textColor="#ff0000"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:id="@+id/success"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/loding"
+        android:text="加载中..."
+        android:textSize="40sp"
+        android:gravity="center"
+        android:textColor="#ff0000"
+
+        />
+</ping.com.happy.HttpView>
