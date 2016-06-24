@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.zip.Inflater;
 
+import ping.com.happy.HttpView;
 import ping.com.happy.R;
 
 /**
@@ -50,10 +51,27 @@ public class ViewPagerAdapter<T> extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = LayoutInflater.from(context).inflate(R.layout.news_content_item,null);
-        TextView textView = (TextView) view.findViewById(R.id.news_content_tv);
-        textView.setText((CharSequence) mDatas.get(position));
+        HttpView view = (HttpView) LayoutInflater.from(context).inflate(R.layout.http_layout,container,false);
         container.addView(view);
-        return view ;
+        return  view ;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

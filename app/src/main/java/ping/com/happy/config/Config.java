@@ -14,6 +14,6 @@ public class Config {
     /**
      * 天行的key
      */
-    public final static String tian_key = "a335729791357495c6362bbd46c12559";
+    public final static String tian_key = "0016c802017032099a85aa5603a7ec62";
 
 }

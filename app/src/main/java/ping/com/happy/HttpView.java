@@ -2,11 +2,30 @@ package ping.com.happy;
 
 import android.content.Context;
 import android.hardware.Camera;
+import android.support.v4.util.ArrayMap;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import org.w3c.dom.Text;
+
+import java.util.Map;
+
+import ping.com.happy.adapter.CommonAdapter;
+import ping.com.happy.adapter.ViewHolder;
+import ping.com.happy.bean.TianXingGirs;
+import ping.com.happy.config.Config;
+import ping.com.happy.http.HttpMethods;
+import ping.com.happy.utils.JLog;
+import rx.Subscriber;
 
 /**
  * 这是一个自定义的 RelativeLayout自定义布局文件，会首先进行加载，然后更新数据
@@ -34,39 +53,24 @@ public class HttpView extends RelativeLayout {
 
     private void initView() {
         //初始化控件
-        for (int i = 0; i < getChildCount(); i++) {
-            View v = getChildAt(i);
-            switch (v.getId()) {
-                case R.id.loding:
-                    loading = v;
-                    break;
-                case R.id.fail:
-                    fail = v;
-                    break;
-                case R.id.success:
-                    success = v;
-                    break;
-            }
-        }
+
     }
 
     /**
-     * 加载中。。
-     */
+//     * 加载中。。
+//     */
     public void loading() {
-        if (View.GONE == loading.getVisibility()) {
-            loading.setVisibility(View.VISIBLE);
-        }
+        loading.setVisibility(View.VISIBLE);
         if (View.GONE != fail.getVisibility()) {
             fail.setVisibility(View.GONE);
         }
         if (View.GONE != success.getVisibility()) {
             success.setVisibility(View.GONE);
         }
-        if (listener!=null){
+        if (listener != null) {
             listener.onLoading();
         }
-
+        getData(1);
     }
 
     /**
@@ -83,38 +87,37 @@ public class HttpView extends RelativeLayout {
         if (View.GONE != success.getVisibility()) {
             success.setVisibility(View.GONE);
         }
-        if (listener!=null){
+        if (listener != null) {
             listener.onFail();
         }
+
     }
 
     /**
      * 加载成功时候调用
      */
     public void successed() {
-        if (View.GONE == success.getVisibility()) {
-            success.setVisibility(View.VISIBLE);
-        }
-        if (View.GONE != loading.getVisibility()) {
-            loading.setVisibility(View.GONE);
-        }
-        if (View.GONE != fail.getVisibility()) {
-            fail.setVisibility(View.GONE);
-        }
 
-        if (listener!=null){
+            success.setVisibility(View.VISIBLE);
+
+            loading.setVisibility(View.GONE);
+
+            fail.setVisibility(View.GONE);
+
+
+        if (listener != null) {
             listener.onSuccessed();
         }
     }
 
-    public void setOnLoadListener(OnLoadListener listener){
-        this.listener=listener;
+    public void setOnLoadListener(OnLoadListener listener) {
+        this.listener = listener;
     }
 
 
-   private OnLoadListener listener;
+    private OnLoadListener listener;
 
-    public interface OnLoadListener{
+    public interface OnLoadListener {
 
         /**
          * 初始化加载时候调用
@@ -125,6 +128,7 @@ public class HttpView extends RelativeLayout {
          * 加载失败后调用
          */
         void onFail();
+
         /**
          * 在加载成功后，调用，用来
          */
@@ -133,4 +137,59 @@ public class HttpView extends RelativeLayout {
 
     }
 
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        for (int i = 0; i < getChildCount(); i++) {
+            View v = getChildAt(i);
+            switch (v.getId()) {
+                case R.id.loding:
+                    loading = v;
+                    break;
+                case R.id.fail:
+                    fail = v;
+                    break;
+                case R.id.success:
+                    success = v;
+                    break;
+            }
+        }
+        loading();
+        JLog.i(loading.toString());
+    }
+
+    private void getData(int page) {
+
+        JLog.i("-----------------------------知悉了-------------------------------------");
+        Map<String, String> params = new ArrayMap<>();
+        params.put("key", Config.tian_key);
+        params.put("num", "20");
+        params.put("rand", "0");
+        params.put("word", "上海");
+        params.put("page", String.valueOf(page));
+
+
+        new HttpMethods ().setRetrofit("meinv", params, new Subscriber<TianXingGirs>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                fail();
+            }
+
+            @Override
+            public void onNext(TianXingGirs o) {
+                JLog.i(o.toString());
+                successed();
+                LinearLayoutManager manager = new LinearLayoutManager(getContext());
+                manager.setOrientation(LinearLayoutManager.VERTICAL);
+                JLog.i(o.getNewslist().size()+"");
+            }
+        });
+
+    }
 }

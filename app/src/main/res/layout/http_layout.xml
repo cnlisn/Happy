@@ -14,12 +14,17 @@
         android:textColor="#ff0000"
         />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
+
+    <TextView
         android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/success"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:text="加载成功"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:textColor="#ff0000"
+        />
 
     <TextView
         android:background="#ffffff"
@@ -30,6 +35,5 @@
         android:textSize="40sp"
         android:gravity="center"
         android:textColor="#ff0000"
-
         />
 </ping.com.happy.HttpView>

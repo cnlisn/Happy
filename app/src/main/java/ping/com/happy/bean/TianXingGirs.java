@@ -86,6 +86,17 @@ public class TianXingGirs {
         public void setUrl(String url) {
             this.url = url;
         }
+
+        @Override
+        public String toString() {
+            return "NewslistBean{" +
+                    "ctime='" + ctime + '\'' +
+                    ", title='" + title + '\'' +
+                    ", description='" + description + '\'' +
+                    ", picUrl='" + picUrl + '\'' +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
     }
 
     @Override

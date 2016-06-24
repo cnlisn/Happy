@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -25,13 +28,18 @@ import ping.com.happy.base.BaseFragment;
 import ping.com.happy.bean.TianXingGirs;
 import ping.com.happy.config.Config;
 import ping.com.happy.http.GirlsService;
+import ping.com.happy.http.HttpMethods;
 import ping.com.happy.utils.JLog;
 import ping.com.happy.utils.ToastUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Description：新闻信息的Fragment类
@@ -58,7 +66,6 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        load();
         mDatas = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             mDatas.add("测试"+i);
@@ -90,36 +97,12 @@ public class NewsFragment extends BaseFragment {
             @Override
             public void onPageSelected(int position) {
                 mRecyclerView.scrollToPosition(position);
-                load();
+
             }
         });
 
     }
 
-    private void load(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Config.tian_url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        GirlsService girlsService = retrofit.create(GirlsService.class);
-        Map<String,String> map = new ArrayMap<>();
-        map.put("key", Config.tian_key);
-        map.put("num",20+"");
-        map.put("rand","1");
-        map.put("page","1");
-        Call<TianXingGirs> call = girlsService.getRepos("meinv", map);
 
-        call.enqueue(new Callback<TianXingGirs>() {
-            @Override
-            public void onResponse(Call<TianXingGirs> call, Response<TianXingGirs> response) {
-                JLog.i(response.body().toString());
-            }
 
-            @Override
-            public void onFailure(Call<TianXingGirs> call, Throwable t) {
-                JLog.i("加载失败");
-                t.printStackTrace();
-            }
-        });
-    }
 }
