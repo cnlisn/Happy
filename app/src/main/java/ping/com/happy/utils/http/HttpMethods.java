@@ -1,12 +1,9 @@
-package ping.com.happy.http;
-
-import android.support.v4.util.ArrayMap;
+package ping.com.happy.utils.http;
 
 import java.util.Map;
 
 import ping.com.happy.bean.TianXingGirs;
 import ping.com.happy.config.Config;
-import ping.com.happy.utils.JLog;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;

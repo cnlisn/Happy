@@ -1,4 +1,4 @@
-package ping.com.happy.adapter;
+package ping.com.happy.activity.adapter;
 
 /**
  * Description：这是多条目RecyclerView的adapter中使用到的接口

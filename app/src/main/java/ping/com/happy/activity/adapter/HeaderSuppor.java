@@ -1,4 +1,4 @@
-package ping.com.happy.adapter;
+package ping.com.happy.activity.adapter;
 
 /**
  * Description： 这是在设置头布局的时候使用的接口

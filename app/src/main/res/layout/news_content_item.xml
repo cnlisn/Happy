@@ -2,31 +2,38 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card="http://schemas.android.com/apk/res-auto"
     android:id="@+id/new_title_card"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
     android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="10dp"
+    card:cardBackgroundColor="#ffffff"
     card:cardCornerRadius="5dp"
+
+    android:stateListAnimator="@anim/select"
     card:cardPreventCornerOverlap="true"
     card:cardUseCompatPadding="true">
 
     <LinearLayout
+        android:background="@null"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/news_content_img"
-            android:layout_width="100dp"
-            android:src="@drawable/loading"
-            android:layout_height="80dp" />
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="aaaaaaaa"
+            android:src="@drawable/loading" />
+
+        <TextView
             android:id="@+id/new_content_des"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="aaaaaaaa" />
     </LinearLayout>
+
 
 </android.support.v7.widget.CardView>

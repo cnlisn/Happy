@@ -1,4 +1,4 @@
-package ping.com.happy.adapter;
+package ping.com.happy.activity.adapter;
 
 /**
  * 这是拖动事件中所使用的类，用来通知底层数据的变化

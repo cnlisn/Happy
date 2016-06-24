@@ -1,10 +1,8 @@
-package ping.com.happy.http;
+package ping.com.happy.utils.http;
 
 import java.util.Map;
 
-import okhttp3.ResponseBody;
 import ping.com.happy.bean.TianXingGirs;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

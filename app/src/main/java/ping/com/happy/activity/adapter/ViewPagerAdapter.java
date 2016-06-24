@@ -1,19 +1,11 @@
-package ping.com.happy.adapter;
+package ping.com.happy.activity.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import java.util.List;
-import java.util.zip.Inflater;
-
-import ping.com.happy.HttpView;
-import ping.com.happy.R;
 
 /**
  * Description：
@@ -21,7 +13,7 @@ import ping.com.happy.R;
  * @Author：桑小年
  * @Data：2016/6/23 18:00
  */
-public class ViewPagerAdapter<T> extends PagerAdapter {
+public abstract class ViewPagerAdapter<T> extends PagerAdapter {
 
     private List<T> mDatas;
     private Context context;
@@ -51,10 +43,13 @@ public class ViewPagerAdapter<T> extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        HttpView view = (HttpView) LayoutInflater.from(context).inflate(R.layout.http_layout,container,false);
+        View view =conver( position,mDatas.get(position));
         container.addView(view);
+
         return  view ;
     }
+
+    public abstract View conver(int position, T t) ;
 }
 
 

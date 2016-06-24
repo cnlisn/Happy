@@ -1,4 +1,4 @@
-package ping.com.happy.adapter;
+package ping.com.happy.activity.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

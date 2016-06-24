@@ -1,7 +1,6 @@
 package ping.com.happy;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,7 +11,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import ping.com.happy.base.BaseActivity;
-import ping.com.happy.fragment.NewsFragment;
+import ping.com.happy.activity.fragment.NewsFragment;
 import ping.com.happy.utils.JLog;
 import ping.com.happy.utils.ToastUtil;
 
